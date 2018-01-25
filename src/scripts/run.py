@@ -29,17 +29,17 @@ def main():
             markovity = k
             file_name = "input_HMM_" + str(n1) + "_HMM_" + str(markovity) + "_markovity.txt"
             file_name = os.path.join(data_dir,file_name)
-            info_file = "info_HMM_" + str(n1) + "_HMM_" + str(markovity) + "_markovity.txt" 
+            info_file = "info_HMM_" + str(n1) + "_HMM_" + str(markovity) + "_markovity.txt"
             info_file = os.path.join(data_dir,info_file)
             val_name = "validate_HMM_" + str(n1) + "_HMM_" + str(markovity) + "_markovity.txt"
             val_name = os.path.join(data_dir,val_name)
-            
+
             ### Generate validation data first
             arg_string  = "  --num_samples " + str(validate_samples)
             arg_string += "  --data_type "   + "HMM"
             arg_string += "  --markovity "   + str(markovity)
             arg_string += "  --file_name "   + val_name
-            arg_string += "  --info_file "   + info_file    
+            arg_string += "  --info_file "   + info_file
             arg_string += "  --p1 "          + str(p1)
             arg_string += "  --n1 "          + str(n1)
 
@@ -51,14 +51,14 @@ def main():
             arg_string += "  --data_type "   + "HMM"
             arg_string += "  --markovity "   + str(markovity)
             arg_string += "  --file_name "   + file_name
-            arg_string += "  --info_file "   + info_file    
+            arg_string += "  --info_file "   + info_file
             arg_string += "  --p1 "          + str(p1)
             arg_string += "  --n1 "          + str(n1)
 
             # Generate the data
             generation_command = "python " + generation_script + arg_string
             subprocess.call([generation_command] , shell=True)
-            
+
             assert os.path.isfile(file_name),"The data did not get generated"
             assert os.path.isfile(val_name),"The data did not get generated"
             assert os.path.isfile(info_file),"The info file did not get created"
@@ -82,8 +82,7 @@ def main():
                 arg_string += " --summary_path " + str(summary_dir)
                 # Run the training
                 train_command = "python " + train_script + arg_string
-                subprocess.call([train_command], shell=True) 
+                subprocess.call([train_command], shell=True)
 
 if __name__ == '__main__':
     main()
-
